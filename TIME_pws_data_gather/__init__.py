@@ -1,12 +1,11 @@
 import datetime
 import logging
 import azure.functions as func
+from azure.storage.blob import BlobServiceClient
 
 from .wunderground_data import *
 from .consolidate_weater_observation_csv_files import *
-from azure.storage.blob import BlobServiceClient
-
-
+from .daily_rainfall_total import *
 
 
 def main(mytimer: func.TimerRequest) -> None: 
@@ -19,6 +18,7 @@ def main(mytimer: func.TimerRequest) -> None:
 
     weather_obs(blob_service_client)
     consolidate(blob_service_client)
+    daily_rainfall_total()
 
 
 

@@ -2,6 +2,7 @@ import requests
 import pandas
 import datetime
 from datetime import datetime as dt
+from .write_to_db import write_to_db
 
 # PSW
 base_url = 'https://api.weather.com/v2/pws/observations'
@@ -20,7 +21,9 @@ file_name = f'pws_observations_{file_time}.csv'
 
 personal_weather_station = {
     'stations': [{'StationId': 'IAUKHIGH2', 'Owner': 'P Holden'}, {'StationId': 'INEWPL81', 'Owner': 'N Holden'},
-                 {'StationId': 'IUPPER72', 'Owner': 'P Whiting'}, {'StationId': 'IKATIKAT9', 'Owner': 'Purple Hen Country Lodge'}, {'StationId': 'ICLYDE11', 'Owner': 'New Crops - CLyde'}]}
+                 {'StationId': 'IUPPER72', 'Owner': 'P Whiting'}, {'StationId': 'IKATIKAT9', 'Owner': 'Purple Hen Country Lodge'}, 
+                 {'StationId': 'ICLYDE9', 'Owner': 'New Crops - CLyde'}, {'StationId': 'IWGNLYAL3', 'Owner': 'MARANUI - Lyall Bay'},
+                 {'StationId': 'IKATIK3', 'Owner': 'Katikati - Town'}, {'StationId': 'IALEXA39', 'Owner': 'Alexandra - Town'}]}
 
 
 def get_blob_file_name():
@@ -68,7 +71,7 @@ def weather_obs(blob_service_client):
                           format,
                           units,
                           apiKey)
-        #  A try/except block has been added due to a weather station going no longher being reachable and causing the job to fail
+        #  A try/except block has been added due to a weather station going no longer being reachable and causing the job to fail
         try:
             station_observation_list.append(get_weather_station_observations(url))
         
@@ -84,3 +87,5 @@ def weather_obs(blob_service_client):
     blob_client = blob_service_client.get_blob_client(container=container, blob=get_blob_file_name())
 
     blob_client.upload_blob(str.encode(output))
+
+    write_to_db(data)
