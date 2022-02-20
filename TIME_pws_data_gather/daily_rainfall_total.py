@@ -32,3 +32,12 @@ def daily_rainfall_total():
     cursor.execute(sql_stmt)
     
     conn.commit()
+
+    sql_stmt = """UPDATE weather.total_daily_rainfall SET 
+    current_date_flag = CASE WHEN format(observation_date, 'yyyyMMdd') = format(DATEADD(dd, DATEDIFF(dd, GETUTCDATE(), observation_date),observation_date), 'yyyMMdd') THEN 1 ELSE 0 END
+    ,current_month_flag = CASE WHEN format(observation_date, 'yyyyMM') = format(DATEADD(dd, DATEDIFF(dd, GETUTCDATE(), observation_date),observation_date), 'yyyMM') THEN 1 ELSE 0 END
+    """
+
+    cursor.execute(sql_stmt)
+    
+    conn.commit()
