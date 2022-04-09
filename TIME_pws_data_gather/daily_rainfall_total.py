@@ -65,3 +65,5 @@ WITH cte_src AS (
     """
 
     cursor.execute(sql_stmt)
+
+    conn.commit()
