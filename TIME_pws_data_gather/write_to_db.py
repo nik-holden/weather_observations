@@ -60,8 +60,8 @@ def write_to_db(dataframe):
     conn.commit()
 
     sql_stmt = """UPDATE weather.raw_observations SET 
-            current_date_flag = CASE WHEN format(obsTimeLocal, 'yyyyMMdd') = format(dateadd(hh, datediff (hh, obsTimeUtc, obsTimeLocal), getdate()), 'yyyMMdd') THEN 1 ELSE 0 END
-            ,current_month_flag = CASE WHEN format(obsTimeLocal, 'yyyyMM') = format(dateadd(hh, datediff (hh, obsTimeUtc, obsTimeLocal), getdate()), 'yyyMM') THEN 1 ELSE 0 END
+            current_date_flag = CASE WHEN format(obsTimeLocal, 'yyyyMMdd') = format(SYSDATETIMEOFFSET() AT TIME ZONE 'New Zealand Standard Time', 'yyyMMdd') THEN 1 ELSE 0 END
+            ,current_month_flag = CASE WHEN format(obsTimeLocal, 'yyyyMM') = format(SYSDATETIMEOFFSET() AT TIME ZONE 'New Zealand Standard Time', 'yyyMM') THEN 1 ELSE 0 END
             """
 
     cursor.execute(sql_stmt)
