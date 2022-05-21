@@ -75,8 +75,8 @@ def weather_obs(blob_service_client):
         try:
             station_observation_list.append(get_weather_station_observations(url))
         
-        except:
-            pass # add an error message in here
+        except Exception as e:
+            print('error: ', e)
 
 
     data = json_to_pandas_dataframe(station_observation_list)
