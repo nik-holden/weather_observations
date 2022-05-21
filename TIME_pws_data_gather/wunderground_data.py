@@ -9,7 +9,7 @@ base_url = 'https://api.weather.com/v2/pws/observations'
 period = 'current'
 format = 'json'
 units = 'm'
-apiKey = '998d9daee4c94c988d9daee4c94c9841'
+apiKey = '2af8653072354d19b8653072358d194f'
 
 epoch = datetime.datetime.utcfromtimestamp(0)
 file_time = (datetime.datetime.now() - epoch).total_seconds() * 1000.0
