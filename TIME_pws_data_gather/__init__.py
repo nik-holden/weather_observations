@@ -17,8 +17,9 @@ def main(mytimer: func.TimerRequest) -> None:
     blob_service_client = BlobServiceClient.from_connection_string(connection_string)
 
     weather_obs(blob_service_client)
-    consolidate(blob_service_client)
     daily_rainfall_total()
+    consolidate(blob_service_client)
+    
 
 
 
