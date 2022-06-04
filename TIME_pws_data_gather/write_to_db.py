@@ -55,18 +55,18 @@ def write_to_db(dataframe):
         SELECT {columns_str}
         FROM staging.raw_observations"""
 
-    #cursor.execute(sql_stmt)
+    cursor.execute(sql_stmt)
 
-    #conn.commit()
+    conn.commit()
 
     sql_stmt = """UPDATE weather.raw_observations SET 
             current_date_flag = CASE WHEN format(obsTimeLocal, 'yyyyMMdd') = format(SYSDATETIMEOFFSET() AT TIME ZONE 'New Zealand Standard Time', 'yyyMMdd') THEN 1 ELSE 0 END
             ,current_month_flag = CASE WHEN format(obsTimeLocal, 'yyyyMM') = format(SYSDATETIMEOFFSET() AT TIME ZONE 'New Zealand Standard Time', 'yyyMM') THEN 1 ELSE 0 END
             """
 
-    #cursor.execute(sql_stmt)
+    cursor.execute(sql_stmt)
     
-    #conn.commit()
+    conn.commit()
 
 def add_columns_to_dataframe(df):
 
