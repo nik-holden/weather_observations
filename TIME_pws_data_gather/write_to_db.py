@@ -6,8 +6,8 @@ from dateutil import tz
 from datetime import datetime as dt
 import math
 
-from config import db_credentials
-from common_functions import set_current_flag
+from .config import db_credentials
+from .common_functions import set_current_flag
 
 
 def write_to_db(dataframe):
