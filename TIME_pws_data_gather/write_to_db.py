@@ -87,7 +87,7 @@ def add_columns_to_dataframe(df):
 
 def apply_utc_offset(date_to_convert):
     # Apply offset to utc time to get local time corrected for DST.  The raw local time is 30 minutes ahead of what it should be
-    date_to_convert = dt.strptime(date_to_convert, '%Y-%m-%dT%H:%M:%SZ')
+    date_to_convert = dt.strptime(date_to_convert, '%Y-%m-%d %H:%M:%SZ')
     return date_to_convert# + date_to_convert.astimezone(tz.gettz('Pacific/Auckland')).utcoffset()
 
 
