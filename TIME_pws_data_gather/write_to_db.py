@@ -70,7 +70,7 @@ def write_to_db(dataframe):
 
 def add_columns_to_dataframe(df):
 
-    df['observation_time_corrected'] = df['obsTimeUtc'].apply(apply_utc_offset)
+    df['observation_time_corrected'] = df['obsTimeLocal']
     df['observation_date_key'] = df['observation_time_corrected'].apply(date_key_convert)
     df['observation_year'] = df['observation_time_corrected'].apply(year_convert)
     df['observation_month'] = df['observation_time_corrected'].apply(month_convert)
