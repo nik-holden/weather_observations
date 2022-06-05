@@ -17,8 +17,8 @@ def main(mytimer: func.TimerRequest) -> None:
     blob_service_client = config.blob_ser_client()
 
     weather_obs(blob_service_client)
-    #daily_rainfall_total()
-    #consolidate(blob_service_client)
+    daily_rainfall_total()
+    consolidate(blob_service_client)
     
 
 
