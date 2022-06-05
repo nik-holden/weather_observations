@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/')
+sys.path.append('/TIME_pws_data_gather')
 
 from datetime import datetime as dt
 import math

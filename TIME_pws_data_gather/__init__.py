@@ -1,13 +1,13 @@
 import sys
-sys.path.append('/')
+sys.path.append('/TIME_pws_data_gather')
 
 import logging
 import azure.functions as func
-from .config import *
+from TIME_pws_data_gather.config import *
 
-from .wunderground_data import *
-from .consolidate_weater_observation_csv_files import *
-from .daily_rainfall_total import *
+from TIME_pws_data_gather.wunderground_data import *
+from TIME_pws_data_gather.consolidate_weater_observation_csv_files import *
+from TIME_pws_data_gather.daily_rainfall_total import *
 
 
 def main(mytimer: func.TimerRequest) -> None: 
@@ -17,8 +17,8 @@ def main(mytimer: func.TimerRequest) -> None:
     blob_service_client = config.blob_ser_client()
 
     weather_obs(blob_service_client)
-    daily_rainfall_total()
-    consolidate(blob_service_client)
+    #daily_rainfall_total()
+    #consolidate(blob_service_client)
     
 
 

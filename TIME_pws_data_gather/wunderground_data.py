@@ -1,14 +1,14 @@
 import sys
-sys.path.append('/')
+sys.path.append('/TIME_pws_data_gather')
 
 import requests
 import pandas
 import datetime
 from datetime import datetime as dt
-from .write_to_db import write_raw_data_to_db
-from .config import *
+from TIME_pws_data_gather.write_to_db import write_raw_data_to_db
+from TIME_pws_data_gather.config import *
 
-import .function_utilities as utils
+import TIME_pws_data_gather.function_utilities as utils
 
 # PSW
 base_url = 'https://api.weather.com/v2/pws/observations'
@@ -101,8 +101,6 @@ def weather_obs(blob_service_client):
 
     df.drop('observation_time_corrected', axis=1, inplace=True)
 
-    print(df)
-
     output = df.to_csv(mode='w', index=False)
 
     # Create a blob client using the local file name as the name for the blob
@@ -111,7 +109,3 @@ def weather_obs(blob_service_client):
     blob_client.upload_blob(str.encode(output))
 
     write_raw_data_to_db(df, 'staging', 'raw_observations')
-
-
-
-weather_obs(config.blob_ser_client())

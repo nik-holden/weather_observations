@@ -1,9 +1,9 @@
 import sys
-sys.path.append('/')
+sys.path.append('/TIME_pws_data_gather')
 
 from sqlalchemy import create_engine, event
 from urllib.parse import quote_plus
-from .common_functions import azure_sql_odbc_connection
+from TIME_pws_data_gather.common_functions import azure_sql_odbc_connection
 
 
 def write_raw_data_to_db(df, schema, table_name):
