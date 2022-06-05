@@ -1,16 +1,9 @@
 import sys
 sys.path.append('/')
 
-import pandas as pd
-import pyodbc
 from sqlalchemy import create_engine, event
 from urllib.parse import quote_plus
-from dateutil import tz
-from datetime import datetime as dt
-import math
-
-import config
-import common_functions as cf
+import .common_functions as cf
 
 
 def write_raw_data_to_db(df, schema, table_name):

@@ -1,15 +1,13 @@
 import sys
 sys.path.append('/')
 
-import datetime
 import logging
 import azure.functions as func
-from azure.storage.blob import BlobServiceClient
-import config
+import .config
 
-from wunderground_data import *
-from consolidate_weater_observation_csv_files import *
-from daily_rainfall_total import *
+from .wunderground_data import *
+from .consolidate_weater_observation_csv_files import *
+from .daily_rainfall_total import *
 
 
 def main(mytimer: func.TimerRequest) -> None: 

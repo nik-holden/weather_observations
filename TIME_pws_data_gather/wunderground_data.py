@@ -5,10 +5,10 @@ import requests
 import pandas
 import datetime
 from datetime import datetime as dt
-from write_to_db import write_raw_data_to_db
-import config
+from .write_to_db import write_raw_data_to_db
+import .config
 
-import function_utilities as utils
+import .function_utilities as utils
 
 # PSW
 base_url = 'https://api.weather.com/v2/pws/observations'
