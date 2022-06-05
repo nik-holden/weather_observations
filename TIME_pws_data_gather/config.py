@@ -1,8 +1,5 @@
-from sqlite3 import DatabaseError
 from azure.identity import ClientSecretCredential
 from azure.keyvault.secrets import SecretClient
-
-import azure.functions as func
 from azure.storage.blob import BlobServiceClient
 
 TENANT_ID = "e074f948-369b-4e94-9e9f-043b7464a9db"

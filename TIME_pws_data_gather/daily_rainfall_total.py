@@ -1,6 +1,5 @@
 import sys
 sys.path.append('/')
-
 import config as cf 
 
 def daily_rainfall_total():
@@ -17,7 +16,7 @@ def daily_rainfall_total():
     cursor = conn.cursor()
 
     sql_stmt = f"""
-WITH cte_src AS (
+    WITH cte_src AS (
     SELECT observation_date, stationID
     ,max([metric_precipitationTotal]) AS metric_precipitationDailyTotal
     ,min(metric_temp) AS metric_min_temp
