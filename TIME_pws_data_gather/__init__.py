@@ -3,7 +3,7 @@ sys.path.append('/')
 
 import logging
 import azure.functions as func
-import .config
+from .config import *
 
 from .wunderground_data import *
 from .consolidate_weater_observation_csv_files import *

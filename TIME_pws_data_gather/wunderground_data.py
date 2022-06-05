@@ -6,7 +6,7 @@ import pandas
 import datetime
 from datetime import datetime as dt
 from .write_to_db import write_raw_data_to_db
-import .config
+from .config import *
 
 import .function_utilities as utils
 

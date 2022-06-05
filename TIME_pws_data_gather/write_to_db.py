@@ -3,7 +3,7 @@ sys.path.append('/')
 
 from sqlalchemy import create_engine, event
 from urllib.parse import quote_plus
-import .common_functions as cf
+from .common_functions import azure_sql_odbc_connection
 
 
 def write_raw_data_to_db(df, schema, table_name):
@@ -14,7 +14,7 @@ def write_raw_data_to_db(df, schema, table_name):
     username = db_username
     password = db_password
     conn = 'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password"""
-    conn = cf.azure_sql_odbc_connection
+    conn = azure_sql_odbc_connection
     quoted = quote_plus(conn)
     engine = create_engine('mssql+pyodbc:///?odbc_connect={}'.format(quoted))
 
