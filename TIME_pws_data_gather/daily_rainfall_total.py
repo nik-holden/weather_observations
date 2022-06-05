@@ -1,19 +1,19 @@
-import pyodbc
+import sys
+sys.path.append('/')
 
-from .config import db_credentials
-from .common_functions import set_current_flag
+import config as cf 
 
 def daily_rainfall_total():
     
-    db_username, db_password = db_credentials()
+    """db_username, db_password = db_credentials()
 
     server = 'nz-personal-nh.database.windows.net'
     database = 'general-data-collection'
     driver = 'ODBC Driver 17 for SQL Server'
     username = db_username
-    password = db_password
+    password = db_password"""
     
-    conn = pyodbc.connect('DRIVER=' + driver + ';SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+    conn = cf.azure_sql_odbc_connection #pyodbc.connect('DRIVER=' + driver + ';SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
     cursor = conn.cursor()
 
     sql_stmt = f"""

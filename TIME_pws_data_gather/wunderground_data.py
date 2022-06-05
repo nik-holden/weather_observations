@@ -1,8 +1,14 @@
+import sys
+sys.path.append('/')
+
 import requests
 import pandas
 import datetime
 from datetime import datetime as dt
-from .write_to_db import write_to_db
+from write_to_db import write_raw_data_to_db
+import config
+
+import function_utilities as utils
 
 # PSW
 base_url = 'https://api.weather.com/v2/pws/observations'
@@ -13,6 +19,7 @@ apiKey = '2af8653072354d19b8653072358d194f'
 
 epoch = datetime.datetime.utcfromtimestamp(0)
 file_time = (datetime.datetime.now() - epoch).total_seconds() * 1000.0
+
 # blob storage
 
 container = 'webdata/raw'
@@ -31,6 +38,7 @@ def get_blob_file_name():
     file_time = dt.now().strftime("%Y-%m-%d_%H-%M-%S")
 
     file_name = f'pws_observations_{file_time}.csv'
+    
     return file_name
 
 
@@ -72,20 +80,38 @@ def weather_obs(blob_service_client):
                           units,
                           apiKey)
         #  A try/except block has been added due to a weather station going no longer being reachable and causing the job to fail
+
         try:
             station_observation_list.append(get_weather_station_observations(url))
         
         except Exception as e:
-            print('error: ', e)
+            print(f'error: {e}) - url not present')
 
 
-    data = json_to_pandas_dataframe(station_observation_list)
+    df = json_to_pandas_dataframe(station_observation_list)
 
-    output = data.to_csv(mode='w', index=False)
+    df.columns = df.columns.str.replace('.', '_')
+
+    df.rename(columns={'metric_precipRate': 'metric_precipitationRate',
+                       'metric_precipTotal': 'metric_precipitationTotal',
+                       'metric_dewpt': 'metric_dewPoint',
+                       'metric_elev': 'metric_elevation'}, inplace=True)
+
+    df = utils.add_columns_to_dataframe(df)
+
+    df.drop('observation_time_corrected', axis=1, inplace=True)
+
+    print(df)
+
+    output = df.to_csv(mode='w', index=False)
 
     # Create a blob client using the local file name as the name for the blob
     blob_client = blob_service_client.get_blob_client(container=container, blob=get_blob_file_name())
 
     blob_client.upload_blob(str.encode(output))
 
-    write_to_db(data)
+    write_raw_data_to_db(df, 'staging', 'raw_observations')
+
+
+
+weather_obs(config.blob_ser_client())
