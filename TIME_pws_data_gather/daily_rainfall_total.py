@@ -1,6 +1,6 @@
 import sys
-sys.path.append('/')
-import config as cf 
+sys.path.append('/TIME_pws_data_gather')
+import TIME_pws_data_gather.config as cf
 
 def daily_rainfall_total():
     
