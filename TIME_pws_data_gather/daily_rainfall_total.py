@@ -5,13 +5,13 @@ import pyodbc
 
 def daily_rainfall_total():
     
-    """db_username, db_password = db_credentials()
+    db_username, db_password = cf.db_credentials()
 
     server = 'nz-personal-nh.database.windows.net'
     database = 'general-data-collection'
     driver = 'ODBC Driver 17 for SQL Server'
     username = db_username
-    password = db_password"""
+    password = db_password
     
     conn = pyodbc.connect('DRIVER=' + driver + ';SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
     cursor = conn.cursor()
