@@ -1,6 +1,6 @@
+from azure.storage.blob import BlobServiceClient
 import sys
 sys.path.append('/TIME_pws_data_gather')
-from azure.storage.blob import BlobServiceClient
 import logging
 import azure.functions as func
 from TIME_pws_data_gather.config import *
@@ -14,9 +14,9 @@ def main(mytimer: func.TimerRequest) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
         tzinfo=datetime.timezone.utc).isoformat()
 
-    blob_connection_string = config.blob_connection_string()
+    connection_string = 'DefaultEndpointsProtocol=https;AccountName=weatherobservationdata;AccountKey=BqBTfTgRLh9df2dTAgjlNsBM6PlMO5pt/5H+dT0TB2gceX7ZXbxMbgvK6jqMl1bWIv+9sYzGgtWnU7Paz4GdAg==;EndpointSuffix=core.windows.net'
 
-    blob_service_client = BlobServiceClient(blob_connection_string)
+    blob_service_client = BlobServiceClient.from_connection_string(connection_string)
 
     weather_obs(blob_service_client)
     daily_rainfall_total()

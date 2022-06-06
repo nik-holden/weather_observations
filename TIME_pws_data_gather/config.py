@@ -1,6 +1,5 @@
 from azure.identity import ClientSecretCredential
 from azure.keyvault.secrets import SecretClient
-from azure.storage.blob import BlobServiceClient
 
 TENANT_ID = "e074f948-369b-4e94-9e9f-043b7464a9db"
 CLIENT_ID = "9729ce94-5a17-474e-89cd-7c0c2fab487d"
