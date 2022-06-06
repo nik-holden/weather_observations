@@ -1,9 +1,8 @@
 
 import sys
-sys.path.append('/')
+sys.path.append('/TIME_pws_data_gather')
 
 import config
-import common_functions as cf
 import pyodbc
 from sqlalchemy import create_engine, event
 from urllib.parse import quote_plus
@@ -28,7 +27,7 @@ def azure_sql_pandas_connection():
     database = database 
     username = db_username
     password = db_password
-    conn = 'DRIVER={'+ azure_sql_driver +'};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password
+    conn = f"""DRIVER={{{azure_sql_driver}}};SERVER='{server}';DATABASE='{database}';UID='{username}';PWD='{password}'"""
     quoted = quote_plus(conn)
     engine = create_engine('mssql+pyodbc:///?odbc_connect={}'.format(quoted))
 

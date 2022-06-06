@@ -5,7 +5,7 @@ import requests
 import pandas
 import datetime
 from datetime import datetime as dt
-from TIME_pws_data_gather.write_to_db import write_raw_data_to_db
+from TIME_pws_data_gather.write_to_db import write_raw_data_to_staging, insert_staging_to_prod
 from TIME_pws_data_gather.config import *
 
 import TIME_pws_data_gather.function_utilities as utils
@@ -27,10 +27,16 @@ storage_account = 'weatherobservationdata'
 file_name = f'pws_observations_{file_time}.csv'
 
 personal_weather_station = {
-    'stations': [{'StationId': 'IAUKHIGH2', 'Owner': 'P Holden'}, {'StationId': 'INEWPL81', 'Owner': 'N Holden'},
-                 {'StationId': 'IUPPER72', 'Owner': 'P Whiting'}, {'StationId': 'IKATIKAT9', 'Owner': 'Purple Hen Country Lodge'}, 
-                 {'StationId': 'ICLYDE9', 'Owner': 'New Crops - CLyde'}, {'StationId': 'IWGNLYAL3', 'Owner': 'MARANUI - Lyall Bay'},
-                 {'StationId': 'IKATIK3', 'Owner': 'Katikati - Town'}, {'StationId': 'IALEXA39', 'Owner': 'Alexandra - Town'}]}
+    'stations': [{'StationId': 'IAUKHIGH2', 'Owner': 'P Holden'},
+                 {'StationId': 'INEWPL81', 'Owner': 'N Holden'},
+                 {'StationId': 'IUPPER72', 'Owner': 'P Whiting'},
+                 {'StationId': 'IKATIKAT9', 'Owner': 'Purple Hen Country Lodge'},
+                 {'StationId': 'ICLYDE9', 'Owner': 'New Crops - Clyde'},
+                 {'StationId': 'IWGNLYAL3', 'Owner': 'MARANUI - Lyall Bay'},
+                 {'StationId': 'IKATIK3', 'Owner': 'Katikati - Town'},
+                 {'StationId': 'IALEXA39', 'Owner': 'Alexandra - Town'}
+                 ]
+}
 
 
 def get_blob_file_name():
@@ -108,4 +114,6 @@ def weather_obs(blob_service_client):
 
     blob_client.upload_blob(str.encode(output))
 
-    write_raw_data_to_db(df, 'staging', 'raw_observations')
+    write_raw_data_to_staging(df, 'staging', 'raw_observations')
+
+    insert_staging_to_prod('weather', 'raw_observations')
