@@ -1,6 +1,7 @@
 import sys
 sys.path.append('/TIME_pws_data_gather')
 import TIME_pws_data_gather.config as cf
+import pyodbc
 
 def daily_rainfall_total():
     
@@ -12,7 +13,7 @@ def daily_rainfall_total():
     username = db_username
     password = db_password"""
     
-    conn = cf.azure_sql_odbc_connection #pyodbc.connect('DRIVER=' + driver + ';SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+    conn = pyodbc.connect('DRIVER=' + driver + ';SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
     cursor = conn.cursor()
 
     sql_stmt = f"""
