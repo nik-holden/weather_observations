@@ -1,7 +1,7 @@
 import sys
 sys.path.append('/TIME_pws_data_gather')
 
-import config
+import TIME_pws_data_gather.config as config
 import pyodbc
 from sqlalchemy import create_engine, event
 from urllib.parse import quote_plus
