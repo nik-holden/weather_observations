@@ -1,6 +1,6 @@
 import sys
 sys.path.append('/TIME_pws_data_gather')
-
+from azure.storage.blob import BlobServiceClient
 import logging
 import azure.functions as func
 from TIME_pws_data_gather.config import *
@@ -14,13 +14,13 @@ def main(mytimer: func.TimerRequest) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
         tzinfo=datetime.timezone.utc).isoformat()
 
-    blob_service_client = config.blob_ser_client()
+    blob_connection_string = config.blob_connection_string()
+
+    blob_service_client = BlobServiceClient.from_connection_string(blob_connection_string)
 
     weather_obs(blob_service_client)
     daily_rainfall_total()
     consolidate(blob_service_client)
-    
-
 
 
     if mytimer.past_due:
