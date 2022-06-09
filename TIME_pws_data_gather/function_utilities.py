@@ -2,12 +2,13 @@ import sys
 sys.path.append('/TIME_pws_data_gather')
 
 from datetime import datetime as dt
+from datetime import timedelta as td
 import math
 from dateutil import tz
 
 def add_columns_to_dataframe(df):
 
-    df['observation_time_corrected'] = df['obsTimeLocal'].apply(convert_str_to_timestamp)
+    df['observation_time_corrected'] = df['obsTimeLocal'] - td(minutes=30).apply(convert_str_to_timestamp)
     df['observation_date_key'] = df['observation_time_corrected'].apply(date_key_convert)
     df['observation_year'] = df['observation_time_corrected'].apply(year_convert)
     df['observation_month'] = df['observation_time_corrected'].apply(month_convert)
