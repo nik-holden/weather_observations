@@ -60,6 +60,14 @@ def daily_rainfall_total():
     conn.commit()
 
     sql_stmt = """UPDATE weather.daily_weather_metrics SET 
+                    current_date_flag = 0
+                    ,current_month_flag = 0 
+                    """
+
+    cursor.execute(sql_stmt)
+
+
+    sql_stmt = """UPDATE weather.daily_weather_metrics SET 
     current_date_flag = CASE WHEN observation_date = CAST(SYSDATETIMEOFFSET() AT TIME ZONE 'New Zealand Standard Time' AS DATE) THEN 1 ELSE 0 END
     ,current_month_flag = CASE WHEN format(observation_date, 'yyyyMM') = format(CAST(SYSDATETIMEOFFSET() AT TIME ZONE 'New Zealand Standard Time' AS DATE), 'yyyyMM') THEN 1 ELSE 0 END
     """

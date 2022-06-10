@@ -49,8 +49,15 @@ def insert_staging_to_prod(schema, table_name):
     conn.commit()
 
     sql_stmt = """UPDATE weather.raw_observations SET 
-            current_date_flag = CASE WHEN format(obsTimeLocal, 'yyyyMMdd') = format(SYSDATETIMEOFFSET() AT TIME ZONE 'New Zealand Standard Time', 'yyyMMdd') THEN 1 ELSE 0 END
-            ,current_month_flag = CASE WHEN format(obsTimeLocal, 'yyyyMM') = format(SYSDATETIMEOFFSET() AT TIME ZONE 'New Zealand Standard Time', 'yyyMM') THEN 1 ELSE 0 END
+                current_date_flag = 0
+                ,current_month_flag = 0 
+                """
+
+    cursor.execute(sql_stmt)
+
+    sql_stmt = """UPDATE weather.raw_observations SET 
+            current_date_flag = CASE WHEN format(observation_date, 'yyyyMMdd') = format(SYSDATETIMEOFFSET() AT TIME ZONE 'New Zealand Standard Time', 'yyyMMdd') THEN 1 ELSE 0 END
+            ,current_month_flag = CASE WHEN format(observation_date, 'yyyyMM') = format(SYSDATETIMEOFFSET() AT TIME ZONE 'New Zealand Standard Time', 'yyyMM') THEN 1 ELSE 0 END
             """
 
     cursor.execute(sql_stmt)
