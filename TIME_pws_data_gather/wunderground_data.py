@@ -34,7 +34,10 @@ personal_weather_station = {
                  {'StationId': 'ICLYDE9', 'Owner': 'New Crops - Clyde'},
                  {'StationId': 'IWGNLYAL3', 'Owner': 'MARANUI - Lyall Bay'},
                  {'StationId': 'IKATIK3', 'Owner': 'Katikati - Town'},
-                 {'StationId': 'IALEXA39', 'Owner': 'Alexandra - Town'}
+                 {'StationId': 'IALEXA39', 'Owner': 'Alexandra - Town'},
+                 {'StationId': 'ITWIZE19', 'Owner': 'Hallewell Haven'},
+                 {'StationId': 'IUPPERHU11', 'Owner': 'Trentham, Upper Hutt'},
+
                  ]
 }
 
