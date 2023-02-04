@@ -25,9 +25,9 @@ def db_credentials():
     DB_USERNAME = _sc.get_secret("nh-per-db-un").value
     DB_PASSWORD = _sc.get_secret("nh-per-db-pw").value
 
-    return DB_USERNAME, DB_PASSWORD
+    return DB_USERNAME, DB_PASSWORD, CLIENT_SECRET
 
 def blob_connection_string():
-    connection_string = 'DefaultEndpointsProtocol=https;AccountName=weatherobservationdata;AccountKey=BqBTfTgRLh9df2dTAgjlNsBM6PlMO5pt/5H+dT0TB2gceX7ZXbxMbgvK6jqMl1bWIv+9sYzGgtWnU7Paz4GdAg==;EndpointSuffix=core.windows.net' #parser.parse_args().connection_string
+    connection_string = 'DefaultEndpointsProtocol=https;AccountName=weatherobservationdata;AccountKey=BqBTfTgRLh9df2dTAgjlNsBM6PlMO5pt/5H+dT0TB2gceX7ZXbxMbgvK6jqMl1bWIv+9sYzGgtWnU7Paz4GdAg==;EndpointSuffix=core.windows.net'
 
     return connection_string
