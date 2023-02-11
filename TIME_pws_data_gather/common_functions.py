@@ -11,7 +11,7 @@ server = config.SERVER
 database = config.DATABASE
 azure_sql_driver = config.AZURE_SQL_DRIVER
 
-db_username, db_password = config.db_credentials()
+db_username, db_password, client_secret = config.db_credentials()
 
 def set_current_flag(schema, table_name, date_column):
     sql_stmt = f"""UPDATE {schema}.{table_name} SET 

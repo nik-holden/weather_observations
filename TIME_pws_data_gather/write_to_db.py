@@ -11,7 +11,7 @@ server = config.SERVER
 database = config.DATABASE
 azure_sql_driver = config.AZURE_SQL_DRIVER
 
-db_username, db_password = config.db_credentials()
+db_username, db_password, client_secret = config.db_credentials()
 username = db_username
 password = db_password
 

@@ -3,7 +3,6 @@ from azure.keyvault.secrets import SecretClient
 
 TENANT_ID = "e074f948-369b-4e94-9e9f-043b7464a9db"
 CLIENT_ID = "9729ce94-5a17-474e-89cd-7c0c2fab487d"
-#CLIENT_SECRET = "E~O7Q~vVn6JOsITujsEh3OStzo3P_2k4crUpu"
 CLIENT_SECRET = "vKl8Q~9i1d0hy_ujFYlb7rlqWCGDwYWyRXvY5c8R"
 
 KEYVAULT_NAME = 'personal-nh'
