@@ -5,7 +5,7 @@ import pyodbc
 
 def daily_rainfall_total():
     
-    db_username, db_password = cf.db_credentials()
+    db_username, db_password, client_secret = cf.db_credentials()
 
     server = 'nz-personal-nh.database.windows.net'
     database = 'general-data-collection'
