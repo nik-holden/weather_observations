@@ -6,7 +6,7 @@ import pandas
 import datetime
 from datetime import datetime as dt
 from TIME_pws_data_gather.write_to_db import write_raw_data_to_staging, insert_staging_to_prod
-from TIME_pws_data_gather.config import *
+import TIME_pws_data_gather.config as cf
 
 import TIME_pws_data_gather.function_utilities as utils
 
@@ -16,6 +16,8 @@ period = 'current'
 format = 'json'
 units = 'm'
 apiKey = '41c4bcd2fc984f7f84bcd2fc981f7f81'
+
+db_username, db_password, client_secret = cf.db_credentials()
 
 epoch = datetime.datetime.utcfromtimestamp(0)
 file_time = (datetime.datetime.now() - epoch).total_seconds() * 1000.0
@@ -28,7 +30,7 @@ file_name = f'pws_observations_{file_time}.csv'
 
 personal_weather_station = {
     'stations': [{'StationId': 'IAUKHIGH2', 'Owner': 'P Holden'},
-                 {'StationId': 'INEWPL81', 'Owner': 'N Holden'},
+                #  {'StationId': 'INEWPL81', 'Owner': 'N Holden'},
                  {'StationId': 'IUPPER72', 'Owner': 'P Whiting'},
                  {'StationId': 'IKATIKAT9', 'Owner': 'Purple Hen Country Lodge'},
                  {'StationId': 'ICLYDE9', 'Owner': 'New Crops - Clyde'},
@@ -37,7 +39,7 @@ personal_weather_station = {
                  {'StationId': 'IALEXA39', 'Owner': 'Alexandra - Town'},
                  {'StationId': 'ITWIZE19', 'Owner': 'Hallewell Haven'},
                  {'StationId': 'IUPPERHU11', 'Owner': 'Trentham, Upper Hutt'},
-
+                 {'StationId': 'INEWPL156', 'Owner': 'N Holden'}
                  ]
 }
 
