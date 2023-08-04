@@ -15,14 +15,14 @@ AZURE_SQL_DRIVER = 'ODBC Driver 17 for SQL Server'
 def db_credentials():
     _credential = ClientSecretCredential(
         tenant_id=TENANT_ID,
-        client_id=CLIENT_ID,
-        client_secret=_sc.get_secret("nh-azure-db-cs").value
+        client_id=CLIENT_ID
     )
 
     _sc = SecretClient(vault_url=KEYVAULT_URI, credential=_credential)
 
     DB_USERNAME = _sc.get_secret("nh-per-db-un").value
     DB_PASSWORD = _sc.get_secret("nh-per-db-pw").value
+    CLIENT_SECRET = _sc.get_secret("nh-azure-db-cs").value
 
     return DB_USERNAME, DB_PASSWORD, CLIENT_SECRET
 
