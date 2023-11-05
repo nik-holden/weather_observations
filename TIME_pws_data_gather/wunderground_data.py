@@ -39,7 +39,9 @@ personal_weather_station = {
                  {'StationId': 'IALEXA39', 'Owner': 'Alexandra - Town'},
                  {'StationId': 'ITWIZE19', 'Owner': 'Hallewell Haven'},
                  {'StationId': 'IUPPERHU11', 'Owner': 'Trentham, Upper Hutt'},
-                 {'StationId': 'INEWPL156', 'Owner': 'N Holden'}
+                 {'StationId': 'INEWPL156', 'Owner': 'N Holden'},
+                 {'StationId': 'INEWPL110', 'Owner': 'C Black'},
+                 {'StationId': 'IKATIK72', 'Owner': 'P Holden - Katikati'}
                  ]
 }
 
