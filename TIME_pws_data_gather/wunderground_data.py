@@ -1,6 +1,7 @@
 import sys
 sys.path.append('/TIME_pws_data_gather')
 
+from azure.storage.blob import BlobServiceClient
 import requests
 import pandas
 import datetime
@@ -15,7 +16,7 @@ base_url = 'https://api.weather.com/v2/pws/observations'
 period = 'current'
 format = 'json'
 units = 'm'
-apiKey = '41c4bcd2fc984f7f84bcd2fc981f7f81'
+apiKey = '71c64b25753b4a40864b25753bda4091'
 
 db_username, db_password, client_secret = cf.db_credentials()
 
@@ -92,6 +93,7 @@ def weather_obs(blob_service_client):
                           format,
                           units,
                           apiKey)
+        print(url)
         #  A try/except block has been added due to a weather station going no longer being reachable and causing the job to fail
 
         try:
@@ -124,3 +126,10 @@ def weather_obs(blob_service_client):
     write_raw_data_to_staging(df, 'staging', 'raw_observations')
 
     insert_staging_to_prod('weather', 'raw_observations')
+
+if __name__ == '__main__':
+    connection_string = 'DefaultEndpointsProtocol=https;AccountName=weatherobservationdata;AccountKey=BqBTfTgRLh9df2dTAgjlNsBM6PlMO5pt/5H+dT0TB2gceX7ZXbxMbgvK6jqMl1bWIv+9sYzGgtWnU7Paz4GdAg==;EndpointSuffix=core.windows.net'
+
+    blob_service_client = BlobServiceClient.from_connection_string(connection_string)
+
+    weather_obs(blob_service_client)
