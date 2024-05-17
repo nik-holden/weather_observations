@@ -16,7 +16,7 @@ base_url = 'https://api.weather.com/v2/pws/observations'
 period = 'current'
 format = 'json'
 units = 'm'
-apiKey = '71c64b25753b4a40864b25753bda4091'
+apiKey = '94dae1228c6b43129ae1228c6b63129f'
 
 db_username, db_password, client_secret = cf.db_credentials()
 

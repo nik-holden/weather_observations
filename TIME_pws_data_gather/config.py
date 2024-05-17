@@ -30,3 +30,13 @@ def blob_connection_string():
     connection_string = 'DefaultEndpointsProtocol=https;AccountName=weatherobservationdata;AccountKey=BqBTfTgRLh9df2dTAgjlNsBM6PlMO5pt/5H+dT0TB2gceX7ZXbxMbgvK6jqMl1bWIv+9sYzGgtWnU7Paz4GdAg==;EndpointSuffix=core.windows.net'
 
     return connection_string
+
+
+def _blob_connection_string():
+    account_name = 'weatherobssea'
+    account_key = 'QjcolMTyXYBSMWellRBlT5TOliVPwmSYieubmVYtqJ5VX5taDaO/HXCp37TiSLA2qwi+r21UAIq3+AStdxgmrQ=='
+    endpoint_suffix = 'core.windows.net'
+
+    _connection_string = f'DefaultEndpointsProtocol=https;AccountName={account_name};AccountKey={account_key};EndpointSuffix={endpoint_suffix}'
+
+    return _connection_string
