@@ -22,9 +22,10 @@ def write_raw_data_to_staging(df, schema, table_name):
    # conn = azure_sql_odbc_connection
     quoted = quote_plus(conn)
     engine = create_engine('mssql+pyodbc:///?odbc_connect={}'.format(quoted))
+    connection = engine
 
     # insert Pandas df into staging DB table
-    df.to_sql(table_name, engine, index=False, if_exists='replace', schema=schema)
+    df.to_sql(table_name, connection, index=False, if_exists='replace', schema=schema)
 
 def insert_staging_to_prod(schema, table_name):
     conn = pyodbc.connect(
