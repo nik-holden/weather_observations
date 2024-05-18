@@ -3,7 +3,7 @@ import sys
 sys.path.append('/TIME_pws_data_gather')
 import logging
 import azure.functions as func
-from TIME_pws_data_gather.config import *
+import TIME_pws_data_gather.config
 
 from TIME_pws_data_gather.wunderground_data import *
 from TIME_pws_data_gather.consolidate_weater_observation_csv_files import *
@@ -16,7 +16,7 @@ def main(mytimer: func.TimerRequest) -> None:
 
     connection_string = 'DefaultEndpointsProtocol=https;AccountName=weatherobservationdata;AccountKey=BqBTfTgRLh9df2dTAgjlNsBM6PlMO5pt/5H+dT0TB2gceX7ZXbxMbgvK6jqMl1bWIv+9sYzGgtWnU7Paz4GdAg==;EndpointSuffix=core.windows.net'
 
-    blob_service_client = BlobServiceClient.from_connection_string(connection_string)
+    blob_service_client = BlobServiceClient.from_connection_string(config._connection_string())
 
     weather_obs(blob_service_client)
     daily_rainfall_total()
