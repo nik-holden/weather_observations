@@ -12,7 +12,7 @@ database = config.DATABASE
 azure_sql_driver = config.AZURE_SQL_DRIVER
 
 db_username, db_password, client_secret = config.db_credentials()
-username = db_username
+username = 'holdenn'#db_username
 password = db_password
 
 connection_string = f"""DRIVER={{{azure_sql_driver}}};SERVER={server};DATABASE={database};UID={username};PWD={password}"""

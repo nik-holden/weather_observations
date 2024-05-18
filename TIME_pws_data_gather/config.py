@@ -8,7 +8,7 @@ CLIENT_SECRET = "yoz8Q~FPoWiRWAVt0SSH_SLP1E2_EWwEOUNlBadF"
 KEYVAULT_NAME = 'personal-nh'
 KEYVAULT_URI = f'https://{KEYVAULT_NAME}.vault.azure.net/'
 
-SERVER = 'nh_personal.database.windows.net'
+SERVER = 'nh-personal.database.windows.net'
 DATABASE = 'general-data-collection'
 AZURE_SQL_DRIVER = 'ODBC Driver 17 for SQL Server'
 
