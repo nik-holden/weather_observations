@@ -9,7 +9,7 @@ from io import StringIO
 
 consolidated_file_name = 'weather_stations_obsertavtions.csv'
 container = 'webdata'
-storage_account = 'weatherobservationdata'
+# storage_account = 'weatherobservationdata'
 
 def read_blob_csv(file_name, blob_service_client):
 
