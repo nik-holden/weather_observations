@@ -7,7 +7,7 @@ def daily_rainfall_total():
     
     db_username, db_password, client_secret = cf.db_credentials()
 
-    server = 'nz-personal-nh.database.windows.net'
+    server = 'nh-personal.database.windows.net'
     database = 'general-data-collection'
     driver = 'ODBC Driver 17 for SQL Server'
     username = db_username
